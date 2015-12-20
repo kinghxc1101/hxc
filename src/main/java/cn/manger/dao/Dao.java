@@ -52,40 +52,19 @@ public class Dao extends HibernateDaoSupport {
 		return object;
 	}
 
-	public Object findObject(final String hql) {
-		// execute
-		HibernateTemplate template = getHibernateTemplate();
-		Object object = template.execute(new HibernateCallback<Object>() {
-			// connection
-			public Object doInHibernate(Session session)
-					throws HibernateException, SQLException {
-				// Transaction transaction = session.beginTransaction();
-				Query query = session.createQuery(hql);
-				Object obj = query.uniqueResult();
-				// session.getTransaction().commit();
-				// session.close();
-				return obj;
-			}
-		});
-		return object;
-	}
+	public List<?> findList(final Class<?> clazz) {
 
-	public List<?> findList(final String hql) {
-		// execute
-		HibernateTemplate template = getHibernateTemplate();
+		return (List<?>) getHibernateTemplate().execute(
+				new HibernateCallback<Object>() {
+					@Override
+					public Object doInHibernate(Session session)
+							throws HibernateException, SQLException {
+						String hql = "from " + clazz.getName();
+						Query query = session.createQuery(hql);
+						return query.list();
+					}
 
-		return (List<?>) template.execute(new HibernateCallback<List<?>>() {
-
-			public List<?> doInHibernate(Session session)
-					throws HibernateException, SQLException {
-				// Transaction transaction = session.beginTransaction();
-				Query query = session.createQuery(hql);
-				List<?> list = query.list();
-				// session.getTransaction().commit();
-				// session.close();
-				return list;
-			}
-		});
+				});
 	}
 
 	// sql: update user set name='wuxx'
@@ -128,19 +107,19 @@ public class Dao extends HibernateDaoSupport {
 				});
 	}
 
-	public List<?> findObjectList(final Class<?> clazz, Integer num) {
-		return (List<?>) getHibernateTemplate().execute(
-				new HibernateCallback<Object>() {
-					@Override
-					public Object doInHibernate(Session session)
-							throws HibernateException, SQLException {
-						String hql = "from " + clazz.getName();
-						Query query = session.createQuery(hql);
-						return query.list();
-					}
-
-				});
-	}
+	// public List<?> findObjectList(final Class<?> clazz, Integer num) {
+	// return (List<?>) getHibernateTemplate().execute(
+	// new HibernateCallback<Object>() {
+	// @Override
+	// public Object doInHibernate(Session session)
+	// throws HibernateException, SQLException {
+	// String hql = "from " + clazz.getName();
+	// Query query = session.createQuery(hql);
+	// return query.list();
+	// }
+	//
+	// });
+	// }
 
 	public void delete(Class<?> clazz, List<Integer> idList) {
 		if (idList == null || idList.isEmpty()) {

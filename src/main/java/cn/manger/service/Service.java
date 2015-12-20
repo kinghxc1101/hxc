@@ -5,7 +5,6 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import cn.manger.dao.Dao;
-import cn.manger.model.Trole;
 
 @org.springframework.stereotype.Service
 public class Service {
@@ -44,17 +43,16 @@ public class Service {
 		return dao.find(clazz, id);
 	}
 
-//	public void update(Class<?> clazz, String pro, String value, int id) {
-//		dao.update(clazz, pro, value, id);
-//	}
+	// public void update(Class<?> clazz, String pro, String value, int id) {
+	// dao.update(clazz, pro, value, id);
+	// }
 
-	public List<?> findList(final String sql) {
-		return dao.findList(sql);
+	public List<?> findList(final Class<?> clazz) {
+		return dao.findList(clazz);
 	}
 
-	public Object findObject(final String sql) {
-		return dao.findObject(sql);
-	}
-	
-	
+	// public Object findObject(final String sql) {
+	// return dao.findObject(sql);
+	// }
+
 }
