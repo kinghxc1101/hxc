@@ -19,40 +19,40 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import cn.manger.model.Tmedia;
+import cn.manger.model.Tnews;
 import cn.manger.service.Service;
 
 @Controller
-public class AdminMediaController {
+public class AdminNewsController {
 
 	@Resource
 	private MydfsTrackerServer mydfsTrackerServer;
-	private static final Log log = LogFactory
-			.getLog(AdminMediaController.class);
+	@SuppressWarnings("unused")
+	private static final Log log = LogFactory.getLog(AdminNewsController.class);
 	@Resource
 	private Service service;
 
-	@RequestMapping(value = "/admin/media/list")
+	@RequestMapping(value = "/admin/news/list")
 	public ModelAndView list() {
 		@SuppressWarnings("unchecked")
-		List<Tmedia> tmediaList = (List<Tmedia>) service.findList(Tmedia.class);
+		List<Tnews> tnewsList = (List<Tnews>) service.findList(Tnews.class);
 		ModelAndView modelView = new ModelAndView();
-		modelView.addObject("tmediaList", tmediaList);
-		String view = "/WEB-INF/back/media/list.jsp";
+		modelView.addObject("tnewsList", tnewsList);
+		String view = "/WEB-INF/back/news/list.jsp";
 		modelView.setViewName(view);
 		return modelView;
 	}
 
-	@RequestMapping("/admin/media/add")
-	public ModelAndView addmediaView() {
+	@RequestMapping("/admin/news/add")
+	public ModelAndView addnewsView() {
 		ModelAndView modelView = new ModelAndView();
-		String viewName = "/WEB-INF/back/media/add.jsp";
+		String viewName = "/WEB-INF/back/news/add.jsp";
 		modelView.setViewName(viewName);
 		return modelView;
 	}
 
-	@RequestMapping(value = "/admin/media/addmedia")
-	public String addmedia(HttpServletRequest request, Tmedia media) {
+	@RequestMapping(value = "/admin/news/addnews")
+	public String addnews(HttpServletRequest request, Tnews news) {
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		String storepath = "";
 		Map<String, MultipartFile> files = multipartRequest.getFileMap();
@@ -74,24 +74,24 @@ public class AdminMediaController {
 				e.printStackTrace();
 			}
 		}
-		media.setImgurl(storepath);
-		service.saveorupdate(media);
-		return "redirect:/admin/media/list.jhtml";
+		news.setImgurl(storepath);
+		service.saveorupdate(news);
+		return "redirect:/admin/news/list.jhtml";
 	}
 
-	@RequestMapping("/admin/media/updatemedia")
-	public ModelAndView updatemedia(Tmedia media) {
-		service.saveorupdate(media);
+	@RequestMapping("/admin/news/updatenews")
+	public ModelAndView updatenews(Tnews news) {
+		service.saveorupdate(news);
 		ModelAndView modelView = new ModelAndView();
 		modelView.setViewName("");
 		return modelView;
 	}
 
-	@RequestMapping("/admin/media/save")
-	public ModelAndView savemedia(Tmedia media) {
-		service.saveorupdate(media);
+	@RequestMapping("/admin/news/save")
+	public ModelAndView savenews(Tnews news) {
+		service.saveorupdate(news);
 		ModelAndView modelView = new ModelAndView();
-		modelView.setViewName("/WEB-INF/back/media/list.jsp");
+		modelView.setViewName("/WEB-INF/back/news/list.jsp");
 		return modelView;
 	}
 }

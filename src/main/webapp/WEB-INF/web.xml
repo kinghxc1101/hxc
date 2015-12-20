@@ -104,10 +104,10 @@
 	</servlet-mapping>
 	<!--end Name:wuqiwei Date:2013-08-10 AddReason:添加springMVC的支持 -->
 	 <!-- Begin Author:wuqiwei:Data:2014-06-05 AddReason:内嵌式小型分布式文件系统集成 -->
-	<!--  <servlet>
+	  <servlet>
 		<servlet-name>storageClient</servlet-name>
 		<servlet-class>mydfs.storage.server.MydfsServerServlet</servlet-class>
-		127.0.0.1:9999 分别是指向dfsServer服务的ip和端口 
+		<!-- 127.0.0.1:9999 分别是指向dfsServer服务的ip和端口  -->
 		<init-param>
 			<param-name>mydfsServerHost:Port</param-name>
 			<param-value>127.0.0.1:9999</param-value>
@@ -116,7 +116,7 @@
 	<servlet-mapping>
 		<servlet-name>storageClient</servlet-name>
 		<url-pattern>/group/M00/*</url-pattern>
-	</servlet-mapping> -->
+	</servlet-mapping> 
 	
 	<error-page>
 		<exception-type>org.apache.shiro.authz.AuthorizationException</exception-type>

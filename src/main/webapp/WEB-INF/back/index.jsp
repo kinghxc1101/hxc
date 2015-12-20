@@ -23,11 +23,11 @@
 			{"menuid":"1","icon":"icon-sys","menuname":"内容管理",
 				"menus":[ 
 					
-						/* <shiro:hasPermission name="newsDinamic:view"> 
+						 <shiro:hasPermission name="newsDinamic:view"> 
 				         {"menuname":"媒体视频管理","url":"/admin/media/list.jhtml"},
-				        </shiro:hasPermission> */
+				        </shiro:hasPermission> 
 						<shiro:hasPermission name="newsDinamic:view"> 
-				         {"menuname":"企业新闻管理","url":"/admin/media/list.jhtml"},
+				         {"menuname":"企业新闻管理","url":"/admin/news/list.jhtml"},
 				        </shiro:hasPermission>
 						<shiro:hasPermission name="business:view"> 
 				         {"menuname":"服务范围管理","url":"/admin/media/list.jhtml"},

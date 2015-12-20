@@ -5,7 +5,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table
-public class Tmedia extends TbaseEntity {
+public class Tnews extends TbaseEntity {
 
 	private static final long serialVersionUID = 2373290306586084763L;
 	private String title;

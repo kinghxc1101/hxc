@@ -61,22 +61,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<a href="javascript:;" class="sort" name="edittime">编辑时间</a>
 				</th>
 				<th>
-					<a href="javascript:;" class="sort" name="edittime">下载积分</a>
-				</th>
-				<th>
-					<a href="javascript:;" class="sort" name="edittime">分类</a>
+					<a href="javascript:;" class="sort" name="edittime">创建时间</a>
 				</th>
 				<th>
 					<a href="#"  class="sort">操作</a>
 				</th>
 			</tr>
-			<c:forEach var="media" items="${page.content}" varStatus="status">
+			<c:forEach var="media" items="${tmediaList}" varStatus="status">
 				<tr>
 					<td>
 						<input type="checkbox" name="ids" value="${media.id}" />
 					</td>
 					<td>
-						<img  src="/${media.imgpath}?w=50&h=50">
+						<img  src="/${media.imgurl}?w=50&h=50">
 					</td>
 					<td>
 						${media.title}
@@ -85,10 +82,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						${media.editTime}
 					</td>
 					<td>
-						${media.coin}
-					</td>
-					<td>
-						${media.type}
+						${media.createTime}
 					</td>
 					<td>
 						<a href="/admin/media/edit/${media.id}.jhtml">[修改]</a>

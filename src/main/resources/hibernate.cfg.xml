@@ -22,6 +22,7 @@
 		<mapping class="cn.manger.model.Tadmin"/>
 		<mapping class="cn.manger.model.Trole"/>
 		<mapping class="cn.manger.model.Tauthority"/>
+		<mapping class="cn.manger.model.Tnews"/>
 		<mapping class="cn.manger.model.Tmedia"/>
 		<mapping class="cn.manger.model.TbaseEntity"/>
 		
