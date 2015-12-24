@@ -13,7 +13,7 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
-	<bean id="dao" class="cn.manger.dao.Dao">
+	<bean id="dao" class="cn.manger.dao.MysqlDao">
 		<property name="hibernateTemplate" ref="hibernateTemplate"/>
 	</bean>
 </beans>

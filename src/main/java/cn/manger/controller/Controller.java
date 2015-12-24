@@ -1,8 +1,12 @@
 package cn.manger.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+
+import net.sf.json.JSONObject;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.logging.Log;
@@ -11,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import cn.manger.model.Tmenu;
 import cn.manger.model.Tuser;
+import cn.manger.service.RedisService;
 import cn.manger.service.Service;
 
 @org.springframework.stereotype.Controller
@@ -19,6 +25,8 @@ public class Controller {
 	private static Log LOG = LogFactory.getLog(CodeController.class);
 	@Resource(name = "service")
 	private Service service;
+	@Resource(name = "redisService")
+	private RedisService redisService;
 
 	@RequestMapping(value = "/reg")
 	public ModelAndView regview() {
@@ -27,6 +35,26 @@ public class Controller {
 		modelview.setViewName("/WEB-INF/front/reg.jsp");
 		return modelview;
 
+	}
+
+	@RequestMapping(value = "/menu")
+	public ModelAndView menu() {
+		ModelAndView modelview = new ModelAndView();
+
+		List<String> list = redisService.getAllKeys(0);
+		for (String string : list) {
+
+			String menu = redisService.getCacheValue(string, 0);
+
+			JSONObject jsonmenu = JSONObject.fromObject(menu);
+
+			Tmenu tmenu = (Tmenu) JSONObject.toBean(jsonmenu, Tmenu.class);
+
+			System.out.println(tmenu.getId());
+			System.out.println(tmenu.getMenuname());
+		}
+		modelview.setViewName("/WEB-INF/front/ss.jsp");
+		return modelview;
 	}
 
 	@RequestMapping("/index.jhtml")

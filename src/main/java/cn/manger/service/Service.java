@@ -4,12 +4,12 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import cn.manger.dao.Dao;
+import cn.manger.dao.MysqlDao;
 
 @org.springframework.stereotype.Service
 public class Service {
 	@Resource
-	private Dao dao;
+	private MysqlDao dao;
 
 	public Object find(Class<?> clazz, String pro, String value) {
 		return dao.find(clazz, pro, value);

@@ -8,7 +8,7 @@
 		
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 	    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-	    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/manger?useUnicode=true&amp;characterEncoding=UTF-8</property>
+	    <property name="hibernate.connection.url">jdbc:mysql://192.168.174.129:3306/manger?useUnicode=true&amp;characterEncoding=UTF-8</property>
 	    <property name="hibernate.connection.username">root</property>
 	    <property name="hibernate.connection.password">****</property>
 		<property name="hbm2ddl.auto">update</property>
@@ -25,6 +25,7 @@
 		<mapping class="cn.manger.model.Tnews"/>
 		<mapping class="cn.manger.model.Tmedia"/>
 		<mapping class="cn.manger.model.TbaseEntity"/>
+		<mapping class="cn.manger.model.Tmenu"/>
 		
 	</session-factory>
 
